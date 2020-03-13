@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core'
 import { AppComponent } from './app.component'
 import { RouterModule } from '@angular/router'
 import { ROUTES } from './base/route'
+import { LayoutModule } from './layout/layout.module'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
