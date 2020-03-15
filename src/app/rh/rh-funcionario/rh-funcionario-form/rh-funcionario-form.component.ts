@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { RhFuncionarioService } from '../rh-funcionario.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { BaseAbstractComponentForm } from 'src/app/base/base-abstracts/base-abstract-component-form'
@@ -8,9 +8,10 @@ import { BaseServiceInterface } from 'src/app/base/base-interfaces/base-service.
   selector: 'fclock-rh-funcionario-form',
   templateUrl: './rh-funcionario-form.component.html'
 })
-export class RhFuncionarioFormComponent extends BaseAbstractComponentForm implements OnInit {
+export class RhFuncionarioFormComponent extends BaseAbstractComponentForm {
 
-  constructor(private funcionarioService: RhFuncionarioService) {
+  constructor(
+    private funcionarioService: RhFuncionarioService) {
     super()
   }
 
@@ -24,4 +25,5 @@ export class RhFuncionarioFormComponent extends BaseAbstractComponentForm implem
       rhEscala: new FormControl(null, { validators: [Validators.required] }),
     })
   }
+
 }

@@ -31,6 +31,9 @@ export interface BaseComponentFormInterface {
     // Form com as propriedades de FormGroup
     form: FormGroup
 
+    // Tamanho do Modal
+    width: string
+
     // Serviço padrão do projeto, obedecendo sua interface
     getService(): BaseServiceInterface
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { FONTAWESOME } from '../cons'
 import { Router } from '@angular/router'
 
@@ -24,8 +24,8 @@ export class LayoutMenuComponent {
     },
     {
       icon: FONTAWESOME.ICON.CLOCK,
-      title: "Ponto",
-      urlRouter: ""
+      title: "Escalas",
+      urlRouter: "rh/escalas"
     }
   ]
 

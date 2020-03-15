@@ -1,5 +1,3 @@
-<fclock-rh-funcionario-form #form></fclock-rh-funcionario-form>
-
 <!--LISTAGEM DE FUNCIONARIOS-->
 <div class="col-md-12">
     <div class="card">
@@ -19,17 +17,19 @@
         </div>
 
         <div class="col-md-3">
-            <a (click)="form?.openModal()" class="btn btn-success" style="color: white; cursor: pointer;"><i class="fa fa-plus"></i> Adicionar</a>
+            <a (click)="form?.openModal()" class="btn btn-success" style="color: white; cursor: pointer;">
+                <i class="fa fa-plus"></i> Novo Funcionário</a>
         </div>
 
         <div class="card-table table-responsive">
-            <table class="table table-hover align-middle">
+            <table class="table table-hover align-middle table condensed">
                 <thead class="thead-light">
                     <tr>
                         <th>Setor</th>
                         <th>Nome</th>
                         <th class="text-center">Status</th>
                         <th>Última Hora</th>
+                        <th class="text-right"></th>
                         <th class="text-right"></th>
                     </tr>
                 </thead>
@@ -38,7 +38,8 @@
                         <td>
                             <div class="media">
                                 <div style="cursor: pointer;" (click)="form?.openModal(funcionario)" class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
-                                    <img [src]="[pathImg + '/' + funcionario?.foto]" width="44" height="44">
+                                    <img *ngIf="funcionario?.foto" [src]="[pathImg + '/' + funcionario?.foto]" width="44" height="44">
+                                    <img *ngIf="!funcionario?.foto" [src]="[pathImg + '/no-profile.jpg']" width="44" height="44">
                                 </div>
 
                                 <div class="media-body">
@@ -46,7 +47,7 @@
                                         {{funcionario?.rhEscala?.nome}}
                                     </div>
 
-                                    <div class="subtext text-success">50</div>
+                                    <div class="subtext">Saldo: <b class="text-success">50</b></div>
                                 </div>
                             </div>
                         </td>
@@ -58,28 +59,32 @@
                         </td>
                         <td>23rd Feb 2017</td>
 
-                        <td class="text-right">
-
-                            <div class="btn-group" role="actions" aria-label="Button group with nested dropdown">
-
-                                <div class="btn-group" role="actions">
-
-                                    <button id="btnActions" type="button" class="btn btn-primary dropdown-toggle"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Ações
-                                    </button>
-
-                                    <div class="dropdown-menu" aria-labelledby="btnActions">
-                                        <a class="dropdown-item" href="#">Dropdown link</a>
-                                        <a class="dropdown-item" href="#">Dropdown link</a>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <td>
+                            <a (click)="openPonto(funcionario)" class="btn btn-sm btn-primary" style="cursor: pointer;" title="Gerenciar Registro de Ponto">
+                                <i class="fa fa-clock-o fa-x2" style="color: white"></i>
+                            </a>
                         </td>
+
+                        <td>
+                            <a (click)="modalDelete?.openModal(funcionario?.id)" class="btn btn-sm btn-danger" style="cursor: pointer;">
+                                <i class="fa fa-trash" style="color: white"></i>
+                            </a>
+                        </td>
+
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<!-- MODAL FORM -->
+<fclock-rh-funcionario-form #form></fclock-rh-funcionario-form>
+
+<!-- MODAL DELETE -->
+<fclock-rh-funcionario-delete #modalDelete></fclock-rh-funcionario-delete>
+
+<!-- MODAL PONTO -->
+<fclock-base-modal title="Registro de Ponto" [isDisableSubmit]="true" [width]="['1080px']" #modalPonto>
+    <fclock-rh-ponto #rhPonto></fclock-rh-ponto>
+</fclock-base-modal>

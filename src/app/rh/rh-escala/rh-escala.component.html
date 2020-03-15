@@ -1,0 +1,47 @@
+<fclock-rh-escala-form #form></fclock-rh-escala-form>
+
+<!--LISTAGEM DE FUNCIONARIOS-->
+<div class="col-md-12">
+    <div class="card">
+
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-3">
+                    Escalas e Horários
+                </div>
+
+                <div class="col-md-9">
+                    <input style="width: 250px; float: right;" type="search" class="form-control form-control-sm"
+                        placeholder="Pesquisar..." autocomplete="off">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <a (click)="form?.openModal()" class="btn btn-success" style="color: white; cursor: pointer;">
+                <i class="fa fa-plus"></i> Nova Escala</a>
+        </div>
+
+        <div class="card-table table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Escala</th>
+                        <th>Carga Horária</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let rhEscala of data">
+                        <tr *ngFor="let rhHorario of rhEscala?.rhHorarios">
+                            <td>
+                                <a href="javascript:;" (click)="form?.openModal(rhEscala)">{{data[0]?.nome}}</a>
+                            </td>
+                            <td>09:00 Hrs</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

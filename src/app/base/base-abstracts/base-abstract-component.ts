@@ -3,6 +3,7 @@ import { BaseComponentFormInterface } from '../base-interfaces/base-component-fo
 import { BaseResourceInterface } from '../base-interfaces/base-resource.interface'
 import { BaseServiceInterface } from '../base-interfaces/base-service.interface'
 import { BaseComponentInterface } from '../base-interfaces/base-component.interface'
+import { HttpParams, HttpHeaders } from '@angular/common/http'
 
 export abstract class BaseAbstractComponent implements BaseComponentInterface {
 
@@ -10,6 +11,7 @@ export abstract class BaseAbstractComponent implements BaseComponentInterface {
   abstract getService(): BaseServiceInterface
 
   @ViewChild('form') form: BaseComponentFormInterface
+  @ViewChild('modalDelete') modalDelete
 
   data: BaseResourceInterface[] = []
 
@@ -18,21 +20,44 @@ export abstract class BaseAbstractComponent implements BaseComponentInterface {
     setTimeout(() => this.listeners())
   }
 
-  getList() {
+  getList(params?: HttpParams, headers?: HttpHeaders) {
     this.getService()
-      .getList()
+      .getList(params, headers)
       .subscribe((res: []) => this.data = res)
   }
 
   listeners() {
-    // Espera pelo evento post do form
-    this.form.eventPost.subscribe((res: BaseResourceInterface) => this.data.push(res))
+    if (this.form) {
+      this.listenPost()
+      this.listenPut()
+    }
 
-    // Espera pelo evento put do form
-    this.form.eventPut.subscribe(res => {
-      let index = this.data.findIndex((r: BaseResourceInterface) => r.id == res.id)
-      this.data[index] = res
+    if (this.modalDelete) {
+      this.listenDelete()
+    }
+  }
+
+  // Espera pelo evento delete
+  private listenDelete() {
+    this.modalDelete.eventDelete.subscribe((res: BaseResourceInterface) => {
+      let index = this.data.findIndex(find => find.id == res.id)
+
+      if (index >= 0)
+        this.data.splice(index, 1)
     })
+  }
+
+  // Espera pelo evento put do form
+  private listenPut() {
+    this.form.eventPut.subscribe((res: BaseResourceInterface[]) => {
+      let index = this.data.findIndex((r: BaseResourceInterface) => r.id == res[0].id)
+      this.data[index] = res[0]
+    })
+  }
+
+  // Espera pelo evento post do form
+  private listenPost() {
+    this.form.eventPost.subscribe((res: BaseResourceInterface[]) => this.data.unshift(res[0]))
   }
 
 }

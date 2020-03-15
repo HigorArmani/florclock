@@ -1,3 +1,3 @@
 export interface BaseResourceInterface {
-    id: number
+    id?: number
 }

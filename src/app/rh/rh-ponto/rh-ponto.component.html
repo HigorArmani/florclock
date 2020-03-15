@@ -1,0 +1,49 @@
+<!-- LISTAGEM DE REGISTRO DE HORARIO -->
+<div class="col-md-12">
+    <div class="card">
+
+        <div class="col-md-5">
+            <a (click)="form?.openModal()" class="btn btn-sm btn-success" style="color: white; cursor: pointer;"><i
+                    class="fa fa-plus"></i> Registrar Horário</a>
+        </div>
+
+        <div class="card-table table-responsive">
+            <table class="table table-hover align-middle table condensed">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Data</th>
+                        <th>Entrada</th>
+                        <th>Almoço</th>
+                        <th>Retorno</th>
+                        <th>Saída</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ponto of data">
+                        <td>{{ponto?.data | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{ponto?.hrEntrada}}</td>
+                        <td>{{ponto?.hrEntradaAlmoco}}</td>
+                        <td>{{ponto?.hrSaidaAlmoco}}</td>
+                        <td>{{ponto?.hrSaida}}</td>
+                        <td><a (click)="form?.openModal(ponto)" class="btn btn-sm btn-primary" style="cursor: pointer;">
+                                <i class="fa fa-clock-o fa-x2" style="color: white"></i>
+                            </a>
+                        </td>
+                        <td><a (click)="modalDelete?.openModal(ponto?.id)" class="btn btn-sm btn-danger" style="cursor: pointer;">
+                                <i class="fa fa-trash fa-x2" style="color: white"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DELETE -->
+<fclock-rh-ponto-delete #modalDelete></fclock-rh-ponto-delete>
+
+<!-- MODAL FORM -->
+<fclock-rh-ponto-form #form></fclock-rh-ponto-form>

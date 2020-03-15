@@ -1,14 +1,10 @@
 import { BaseComponentFormInterface } from '../base-interfaces/base-component-form.interface'
-import { ViewChild, EventEmitter } from '@angular/core'
+import { ViewChild, EventEmitter, Input } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { BaseModalComponent } from '../base-modal/base-modal.component'
 import { BaseServiceInterface } from '../base-interfaces/base-service.interface'
 import { BaseResourceInterface } from '../base-interfaces/base-resource.interface'
-
-const METHOD = {
-    POST: 1,
-    PUT: 2
-}
+import { HTTP } from '../base-cons'
 
 export abstract class BaseAbstractComponentForm implements BaseComponentFormInterface {
 
@@ -21,6 +17,13 @@ export abstract class BaseAbstractComponentForm implements BaseComponentFormInte
     public method: number
     public id: number
 
+    afterModalFormOpen = () => {}
+
+    @Input() width = null
+
+    /**
+     * Correto aqui seria BaseModalComponentInterface, para a demo deixarei assim
+     */
     @ViewChild('modalForm') baseModal: BaseModalComponent
 
     form: FormGroup
@@ -29,18 +32,30 @@ export abstract class BaseAbstractComponentForm implements BaseComponentFormInte
         this.form = this.buildForm()
     }
 
-    post() {
+    post(data = null) {
+
+        let postData = this.form.value
+        if (data != null) {
+            postData = data
+        }
+
         this.getService()
-            .post(this.form.value)
+            .post(postData)
             .subscribe((res: BaseResourceInterface) => {
                 this.baseModal.closeModal(),
                 this.eventPost.emit(res)
             })
     }
 
-    put() {
+    put(data = null) {
+
+        let putData = this.form.value
+        if (data != null) {
+            putData = data
+        }
+
         this.getService()
-            .put(this.form.value, this.id)
+            .put(putData, this.id)
             .subscribe((res: BaseResourceInterface) => {
                 this.baseModal.closeModal(),
                 this.eventPut.emit(res)
@@ -52,14 +67,16 @@ export abstract class BaseAbstractComponentForm implements BaseComponentFormInte
 
         if (data) {
             this.id = data.id
-            this.method = METHOD.PUT
+            this.method = HTTP.REQUEST.PUT
             this.form.patchValue(data) // Databind dos dados para o formulario
         } else {
-            this.method = METHOD.POST
+            this.method = HTTP.REQUEST.POST
             this.form.reset()
         }
 
         this.baseModal.openModal()
+
+        this.afterModalFormOpen()
     }
 
     // Função para fechar o modal
@@ -70,9 +87,9 @@ export abstract class BaseAbstractComponentForm implements BaseComponentFormInte
 
     // Ao salvar os dados do formulario
     onSubmit() {
-        if (this.method == METHOD.POST) {
+        if (this.method == HTTP.REQUEST.POST) {
             this.post()
-        } else if (this.method == METHOD.PUT) {
+        } else if (this.method == HTTP.REQUEST.PUT) {
             this.put()
         }
     }

@@ -1,0 +1,36 @@
+<!-- MODAL FORM -->
+<fclock-base-modal [width]="['900px']" title="Horários da Escala" (eventSubmit)="onSubmit()" [isDisableSubmit]="true" #modalForm>
+
+    <ul class="nav nav-pills">
+        <li *ngFor="let dia of baseDias" class="nav-item">
+            <a (click)="onSelectTab(dia)" class="nav-link" href="javascript:;" [class.active]="tabSelected?.id == dia?.id">{{dia?.nome}}</a>
+        </li>
+    </ul>
+
+    <hr />
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-md-4" *ngIf="tabSelected?.id == 0">
+                <div class="form-group">
+                    <label>Escala</label>
+                    <input formControlName="nome" type="text" class="form-control" placeholder="Nome da Escala, Ex: Vigia" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div *ngFor="let dia of baseDias; let i = index" class="row">
+                <div class="col-md-4" *ngIf="tabSelected?.id == dia?.id">
+                    <div class="form-group">
+                        <label>Hora Entrada</label>
+                        <input [value]="rhHorarios[i]?.hrEntrada" (focusout)="patchEntrada($event?.target?.value, i)" type="time" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hora Saida</label>
+                        <input [value]="rhHorarios[i]?.hrSaida" (focusout)="patchSaida($event?.target?.value, i)" type="time" class="form-control" readonly>
+                    </div>
+                </div>
+        </div>
+    </form>
+
+</fclock-base-modal>

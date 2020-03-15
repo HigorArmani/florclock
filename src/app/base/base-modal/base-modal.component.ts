@@ -6,6 +6,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 })
 export class BaseModalComponent {
 
+  // Para alterar o tamanho
+  @Input() width = null
+  @Input() isDisableSubmit = false
+  @Input() btnStyle = "btn-primary"
+
   // Titulo do modal
   @Input() title = ""
 

@@ -1,6 +1,6 @@
-<div class="modal" tabindex="-1" role="dialog" [style.display]="isOpen ? 'block' : 'none'" [class.fade]="true"
-    [class.show]="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade show" aria-hidden="true" data-backdrop="false" role="dialog" tabindex="-1" [style.display]="isOpen ? 'block' : 'none'">
+    
+    <div class="modal-dialog" [class.modal-lg]="width !== null" [style.width]="width">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -16,7 +16,7 @@
 
             <div class="modal-footer">
                 <button (click)="closeModal()" class="btn btn-secondary">Fechar</button>
-                <button (click)="onSubmit()" type="button" class="btn btn-primary">Salvar</button>
+                <button *ngIf="isDisableSubmit == false" (click)="onSubmit()" type="button" class="btn" [class]="btnStyle">Confirmar</button>
             </div>
 
         </div>

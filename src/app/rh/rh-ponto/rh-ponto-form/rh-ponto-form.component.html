@@ -1,0 +1,42 @@
+<!-- MODAL FORM -->
+<fclock-base-modal title="Funcionário" (eventSubmit)="onSubmit()" #modalForm>
+
+    <form [formGroup]="form">
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Data</label>
+                    <input (focusout)="onPatchDate($event?.target?.value)" formControlName="data" type="date" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Hora Entrada</label>
+                    <input formControlName="hrEntrada" type="time" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Hora Retorno Almoço</label>
+                    <input formControlName="hrSaidaAlmoco" type="time" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Hora Almoço</label>
+                    <input formControlName="hrEntradaAlmoco" type="time" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Hora Saida</label>
+                    <input formControlName="hrSaida" type="time" class="form-control">
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</fclock-base-modal>

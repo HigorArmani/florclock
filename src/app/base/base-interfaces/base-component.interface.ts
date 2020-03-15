@@ -1,3 +1,5 @@
+import { HttpParams, HttpHeaders } from '@angular/common/http'
+
 export interface BaseComponentInterface {
-    getList(): void
+    getList(params?: HttpParams, headers?: HttpHeaders): void
 }
