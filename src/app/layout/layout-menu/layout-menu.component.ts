@@ -1,5 +1,6 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { FONTAWESOME } from '../cons'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'fclock-layout-menu',
@@ -7,7 +8,7 @@ import { FONTAWESOME } from '../cons'
 })
 export class LayoutMenuComponent {
 
-  optSelected: OptMenu
+  constructor(private router: Router) { }
 
   // Opções do menu
   menuOpts: OptMenu[] = [
@@ -19,7 +20,7 @@ export class LayoutMenuComponent {
     {
       icon: FONTAWESOME.ICON.USER,
       title: "Funcionários",
-      urlRouter: ""
+      urlRouter: "rh/funcionarios"
     },
     {
       icon: FONTAWESOME.ICON.CLOCK,
@@ -28,8 +29,13 @@ export class LayoutMenuComponent {
     }
   ]
 
+  // Opção selecionada
+  optSelected: OptMenu = this.menuOpts[0]
+
   onSelect(opt: OptMenu) {
     this.optSelected = opt
+
+    this.router.navigate([opt.urlRouter])
   }
 
 }

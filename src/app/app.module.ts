@@ -4,6 +4,7 @@ import { AppComponent } from './app.component'
 import { RouterModule } from '@angular/router'
 import { ROUTES } from './base/route'
 import { LayoutModule } from './layout/layout.module'
+import { RhModule } from './rh/rh.module'
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { LayoutModule } from './layout/layout.module'
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
-    LayoutModule
+    LayoutModule,
+    RhModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,14 @@
+<!-- MODAL FORM -->
+<fclock-base-modal title="Funcionário" (eventSubmit)="onSubmit()" #modalForm>
+
+    <form [formGroup]="form">
+
+        <div class="form-group">
+            <label>*Nome</label>
+            <input formControlName="nome" type="text" class="form-control" placeholder="Nome do Funcionário">
+            <small class="form-text text-muted">*Escreva o nome completo do funcionário.</small>
+        </div>
+
+    </form>
+
+</fclock-base-modal>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { LayoutTopbarComponent } from './layout-topbar/layout-topbar.component'
 import { LayoutMenuComponent } from './layout-menu/layout-menu.component'
+import { RouterModule } from '@angular/router'
 
 // Components publicos do modulo layout
 const COMPONENTS = [
@@ -14,7 +15,7 @@ const COMPONENTS = [
     COMPONENTS
   ],
   imports: [
-    BrowserModule,
+    BrowserModule
   ],
   exports: [
     COMPONENTS

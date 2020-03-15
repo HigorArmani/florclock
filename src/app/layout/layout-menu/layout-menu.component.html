@@ -1,57 +1,21 @@
-<div class="row">
+<div id="mCSB_5_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+    <ul class="nav nav-pills flex-column">
+        <li class="logo-nav-item">
+            <a class="navbar-brand" href="#">
+                <img src="assets/img/logo_white.svg" width="145" height="32.3" alt="QuillPro" class="mCS_img_loaded">
+            </a>
+        </li>
 
-    <nav id="sidebar" 
-         class="px-0 bg-dark bg-gradient sidebar mCustomScrollbar _mCS_5 mCS-autoHide"
-         style="height: 757px;">
+        <li>
+            <h6 class="nav-header">Geral</h6>
+        </li>
 
-        <button 
-            class="hamburger hamburger--slider"
-            type="button" 
-            data-target=".sidebar"
-            aria-controls="sidebar"
-            aria-expanded="false"
-            aria-label="Toggle Sidebar">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </button>
+        <li *ngFor="let opt of menuOpts" class="selected" (click)="onSelect(opt)" style="cursor: pointer;">
+            <a class="nav-link" [class.active]="optSelected == opt">
+                <i [class]="opt?.icon"></i>
+                {{opt?.title}}
+            </a>
+        </li>
 
-        <div id="mCSB_5" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;">
-            <div id="mCSB_5_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
-                <ul class="nav nav-pills flex-column">
-                    <li class="logo-nav-item">
-                        <a class="navbar-brand" href="#">
-                            <img src="assets/img/logo-white.png" width="145" height="32.3" alt="QuillPro"
-                                class="mCS_img_loaded">
-                        </a>
-                    </li>
-
-                    <li>
-                        <h6 class="nav-header">Geral</h6>
-                    </li>
-
-                    <li *ngFor="let opt of menuOpts" class="selected">
-                        <a class="nav-link fc-link" (click)="onSelect(opt)" [class.active]="optSelected == opt">
-                            <i [class]="opt?.icon"></i>
-                            {{opt?.title}}
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div id="mCSB_5_scrollbar_vertical"
-                class="mCSB_scrollTools mCSB_5_scrollbar mCS-light mCSB_scrollTools_vertical mCSB_scrollTools_onDrag_expand"
-                style="display: block;">
-                <div class="mCSB_draggerContainer">
-                    <div id="mCSB_5_dragger_vertical" class="mCSB_dragger"
-                        style="position: absolute; min-height: 30px; display: block; height: 512px; max-height: 747px; top: 0px;">
-                        <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
-                    </div>
-                    <div class="mCSB_draggerRail"></div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
+    </ul>
 </div>
