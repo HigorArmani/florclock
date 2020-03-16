@@ -37,7 +37,7 @@
                     <tr *ngFor="let funcionario of data">
                         <td>
                             <div class="media">
-                                <div style="cursor: pointer;" (click)="form?.openModal(funcionario)" class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
+                                <div style="cursor: pointer;" (click)="form?.openModal(funcionario)" class="profile-picture bg-gradient bg-primary float-right d-flex mr-3">
                                     <img *ngIf="funcionario?.foto" [src]="[pathImg + '/' + funcionario?.foto]" width="44" height="44">
                                     <img *ngIf="!funcionario?.foto" [src]="[pathImg + '/no-profile.jpg']" width="44" height="44">
                                 </div>
