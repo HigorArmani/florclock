@@ -48,4 +48,14 @@ export class RhFuncionarioComponent extends BaseAbstractComponent {
     this.rhPonto.form.eventPut.subscribe(() => this.getList())
   }
 
+  onSearch(term: string){
+
+    let params = (new HttpParams)
+      .set("nome[search]", `${term}`)
+      .set("rhEscala.nome[search]", `${term}`)
+      .set("rhFuncionarioStatus.nome[search]", `${term}`)
+
+    this.getList(params)
+  }
+
 }

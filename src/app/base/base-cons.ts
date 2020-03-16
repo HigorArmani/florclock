@@ -4,3 +4,10 @@ export const HTTP = {
         PUT: 2
     }
 }
+
+export const RESOURCE = {
+    ORDER: {
+        ASC: "ASC",
+        DESC: "DESC"
+    }
+}

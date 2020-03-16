@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="col-md-9">
-                    <input style="width: 250px; float: right;" type="search" class="form-control form-control-sm"
+                    <input (input)="onSearch($event?.target?.value)" style="width: 250px; float: right;" type="search" class="form-control form-control-sm"
                         placeholder="Pesquisar..." autocomplete="off">
                 </div>
 
