@@ -6,4 +6,9 @@ import { Component } from '@angular/core'
 })
 export class AppComponent {
   title = 'florclock'
+
+  isMobile() {
+    return window.screen.width <= 768
+  }
+
 }

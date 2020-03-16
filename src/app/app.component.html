@@ -1,22 +1,28 @@
-<div class="container-fluid">
-    <div class="row">
-
-        <!--MENU-->
-        <nav id="sidebar" class="px-0 bg-dark bg-gradient sidebar mCustomScrollbar _mCS_9 mCS-autoHide"style="height: 100%;">
-
-            <div id="mCSB_9" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;">
-                <fclock-layout-menu></fclock-layout-menu>
+<ng-container *ngIf="!isMobile()">
+    <div class="container-fluid">
+        <div class="row">
+    
+            <!--MENU-->
+            <nav id="sidebar" class="px-0 bg-dark bg-gradient sidebar mCustomScrollbar _mCS_9 mCS-autoHide"style="height: 100%;">
+    
+                <div id="mCSB_9" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;">
+                    <fclock-layout-menu></fclock-layout-menu>
+                </div>
+            </nav>
+    
+            <div class="right-column">
+                <!-- TOP BAR -->
+                <fclock-layout-topbar></fclock-layout-topbar>
+    
+                <main class="main-content p-5" role="main">
+                    <router-outlet></router-outlet>
+                </main>
             </div>
-        </nav>
-
-        <div class="right-column">
-            <!-- TOP BAR -->
-            <fclock-layout-topbar></fclock-layout-topbar>
-
-            <main class="main-content p-5" role="main">
-                <router-outlet></router-outlet>
-            </main>
+    
         </div>
-
     </div>
-</div>
+</ng-container>
+
+<ng-container *ngIf="isMobile()">
+    <h2>Disponivel apenas para Desktop, em breve baixe nosso App :)</h2>
+</ng-container>
