@@ -1,4 +1,4 @@
-const API = `http://www.rpglive.com.br:8086`
+const API = `http://191.252.184.142:8086`
 const BASE_API = `${API}/base`
 const RH_API = `${API}/rh`
 

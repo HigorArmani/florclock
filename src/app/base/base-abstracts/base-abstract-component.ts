@@ -4,6 +4,7 @@ import { BaseResourceInterface } from '../base-interfaces/base-resource.interfac
 import { BaseServiceInterface } from '../base-interfaces/base-service.interface'
 import { BaseComponentInterface } from '../base-interfaces/base-component.interface'
 import { HttpParams, HttpHeaders } from '@angular/common/http'
+import { BaseComponentDeleteInterface } from '../base-interfaces/base-component-delete.interface'
 
 export abstract class BaseAbstractComponent implements BaseComponentInterface {
 
@@ -11,7 +12,7 @@ export abstract class BaseAbstractComponent implements BaseComponentInterface {
   abstract getService(): BaseServiceInterface
 
   @ViewChild('form') form: BaseComponentFormInterface
-  @ViewChild('modalDelete') modalDelete
+  @ViewChild('modalDelete') modalDelete: BaseComponentDeleteInterface
 
   data: BaseResourceInterface[] = []
 

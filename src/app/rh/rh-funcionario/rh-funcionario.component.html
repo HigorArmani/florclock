@@ -47,7 +47,7 @@
                                         {{funcionario?.rhEscala?.nome}}
                                     </div>
 
-                                    <div class="subtext">Saldo: <b class="text-success">50</b></div>
+                                    <div class="subtext">Saldo: <b class="text-success">{{funcionario?.hrSaldo}}</b></div>
                                 </div>
                             </div>
                         </td>
@@ -55,9 +55,14 @@
                             <a href="javascript:;" (click)="form?.openModal(funcionario)">{{funcionario?.nome}}</a>
                         </td>
                         <td class="text-center">
-                            <span class="badge badge-success">Trabalhando</span>
+                            <span class="badge"
+                                [class.badge-secondary]="funcionario?.rhFuncionarioStatus?.id == 1"
+                                [class.badge-success]="funcionario?.rhFuncionarioStatus?.id == 2"
+                                [class.badge-warning]="funcionario?.rhFuncionarioStatus?.id == 3">
+                                {{funcionario?.rhFuncionarioStatus?.nome}}
+                            </span>
                         </td>
-                        <td>23rd Feb 2017</td>
+                        <td>{{funcionario?.hrUltima}}</td>
 
                         <td>
                             <a (click)="openPonto(funcionario)" class="btn btn-sm btn-primary" style="cursor: pointer;" title="Gerenciar Registro de Ponto">

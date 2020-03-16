@@ -41,4 +41,11 @@ export class RhFuncionarioComponent extends BaseAbstractComponent {
     }
   }
 
+  listeners() {
+    super.listeners()
+
+    this.rhPonto.form.eventPost.subscribe(() => this.getList())
+    this.rhPonto.form.eventPut.subscribe(() => this.getList())
+  }
+
 }
